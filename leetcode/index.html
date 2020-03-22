@@ -3,30 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style>
-        .triangle {
-            width: 0;
-            height: 0;
-            border-bottom: 40px solid red;
-            border-left: 30px solid transparent;
-            border-right: 30px solid transparent;
-        }
-    </style>
 </head>
 <body>
-    <div class="triangle"></div>
-    <canvas id="triangle"></canvas>
     <script>
-        let triangle = document.getElementById("triangle")
-        let cxt = triangle.getContext('2d')
-        cxt.beginPath()
-        cxt.moveTo(100, 100)
-        cxt.lineTo(200, 100)
-        cxt.lineTo(150, 200)
-        cxt.fillStyle = 'red'
-        cxt.fill()
+        const flatten = (arr) => {
+            let result = []
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i] instanceof Array) {
+                    result = result.concat(flatten(arr[i]))
+                } else {
+                    result.push(arr[i])
+                }
+            }
+            console.log(result)
+            return result
+        }
+        flatten([1,2,[3,4,[5]]])
     </script>
 </body>
 </html>
